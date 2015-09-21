@@ -7,5 +7,3 @@ func init() {
     http.Redirect(w, r, "intranet.html", http.StatusMovedPermanently)
   })
 }
-
-
