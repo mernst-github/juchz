@@ -4,10 +4,15 @@ api_version: go1
 
 handlers:
 - url: /$
-  static_files: static/index.html
-  upload: static/index.html
+  script: _go_app
+- url: /index.html$
+  script: _go_app
 - url: /intranet$
   static_files: static/intranet.html
   upload: static/intranet.html
+- url: /static/(.*.html)$
+  static_files: static/\1
+  mime_type: text/html;charset=UTF-8
+  upload: static/.*.html
 - url: /
   static_dir: static
