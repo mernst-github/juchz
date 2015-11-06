@@ -3,7 +3,10 @@ package main
 import "net/http"
 
 func init() {
-  http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-    http.Redirect(w, r, "https://www.google.com" + r.Url.EscapedPath(), http.StatusFound)
+  http.HandleFunc("/calendar/", func (w http.ResponseWriter, r *http.Request) {
+    u := *r.URL
+    u.Scheme = "https"
+    u.Host = "www.google.com"
+    http.Redirect(w, r, u.String(), http.StatusFound)
   })
 }
