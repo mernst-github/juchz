@@ -20,6 +20,9 @@ func init() {
     }
     defer resp.Body.Close()
     w.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
+    w.Header().Set("Expires", resp.Header.Get("Expires"))
+    w.Header().Set("Cache-Control", resp.Header.Get("Cache-Control"))
+    w.Header().Set("Pragma", "no-cache")
     io.Copy(w, resp.Body)
   })
 }
